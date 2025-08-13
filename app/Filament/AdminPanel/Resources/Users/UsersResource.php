@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Users;
+namespace App\Filament\AdminPanel\Resources\Users;
 
-use App\Filament\Admin\Resources\Users\Pages\CreateUsers;
-use App\Filament\Admin\Resources\Users\Pages\EditUsers;
-use App\Filament\Admin\Resources\Users\Pages\ListUsers;
-use App\Filament\Admin\Resources\Users\Schemas\UsersForm;
 use App\Filament\Admin\Resources\Users\Tables\UsersTable;
+use App\Filament\AdminPanel\Resources\Users\Pages\CreateUsers;
+use App\Filament\AdminPanel\Resources\Users\Pages\EditUsers;
+use App\Filament\AdminPanel\Resources\Users\Pages\ListUsers;
+use App\Filament\AdminPanel\Resources\Users\Schemas\UsersForm;
 use App\Models\Users;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -21,11 +20,9 @@ class UsersResource extends Resource
 {
     protected static ?string $model = Users::class;
 
-    // Corrected property types
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    protected static string|UnitEnum|null $navigationGroup = null;
 
-    protected static ?string $recordTitleAttribute = 'email';
+    protected static ?string $recordTitleAttribute = 'Users';
 
     public static function form(Schema $schema): Schema
     {

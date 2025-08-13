@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Users;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -24,9 +25,11 @@ class AdminPanelPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('adminPanel')       // Set ID first
-            ->default()              // Then mark as default
-            ->login()                // Generate /adminPanel/login route
+            ->id('adminPanel')
+            ->default()
+            ->authGuard('external')
+            ->authPasswordBroker('external_users')  // Add this line
+            ->login()
             ->path('adminPanel')
             ->colors([
                 'primary' => Color::Amber,
