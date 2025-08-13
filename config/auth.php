@@ -14,8 +14,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        'external' => [    
+        'external' => [
+            'driver' => 'session',
+            'provider' => 'external_users',
+        ],
+        'merchant' => [
             'driver' => 'session',
             'provider' => 'external_users',
         ],
@@ -27,10 +30,14 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'external_users' => [                
+        'external_users' => [
             'driver' => 'eloquent',
-            'model' => Users::class,         
+            'model' => Users::class,
         ],
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Users::class,
+        // ],
     ],
 
     'passwords' => [

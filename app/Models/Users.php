@@ -84,7 +84,7 @@ class Users extends Authenticatable implements FilamentUser, HasName
      */
     public function getAuthIdentifierName(): string
     {
-        return 'email'; // or whatever your unique identifier column is
+        return 'email';
     }
 
     /**
@@ -132,26 +132,25 @@ class Users extends Authenticatable implements FilamentUser, HasName
         return trim(($this->first_name ?? '') . ' ' . ($this->last_name ?? ''))
             ?: ($this->email ?? 'Unknown User');
     }
-    /**
-     * Required by FilamentUser interface
-     */
+
     public function canAccessPanel(\Filament\Panel $panel): bool
     {
-        // Only admins can access the panel
-        return $this->role === self::ROLE_ADMIN && $this->enabled;
+        if ($panel->getId() === 'adminPanel') {
+            return $this->role === 'admin';
+        }
+
+        if ($panel->getId() === 'merchant') {
+            return $this->role === 'merchant';
+        }
+
+        return false;
     }
 
-    /**
-     * Check if user is admin
-     */
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
     }
 
-    /**
-     * Check if user is enabled
-     */
     public function isEnabled(): bool
     {
         return $this->enabled === true;
