@@ -29,7 +29,7 @@ class AdminPanelPanelProvider extends PanelProvider
             ->default()
             ->authGuard('external')
             ->authPasswordBroker('external_users')
-            ->path('adminPanel')
+            ->path('admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
